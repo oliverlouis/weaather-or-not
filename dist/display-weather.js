@@ -49,3 +49,5 @@ class DisplayWeather {
       `;
 	};
 }
+
+export default DisplayWeather;

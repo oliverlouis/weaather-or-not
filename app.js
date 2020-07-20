@@ -1,4 +1,19 @@
-//Api URL
-// api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
+//Instantiate Classes
 
-const apiKey = 'f1119b0e266c26e6f41665e31e34808f';
+const ft = new Fetch();
+const ui = new DisplayWeather();
+
+//Event Listeners
+
+const city = document.querySelector('.search-city');
+const button = document.querySelector('.submit');
+
+button.addEventListener('click', () => {
+	const currentCity = city.value;
+	console.log(city.value);
+
+	ft.getWeather(currentCity).then((data) => {
+		ui.populateWeatherDisplay(data);
+	});
+	// ui.saveToLS(data);
+});

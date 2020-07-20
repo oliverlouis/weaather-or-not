@@ -20,13 +20,13 @@
          <h3>Weather or Not</h3>
       </header>
       <div class="search-container">
-         <form action="">
-            <input type="text" placeholder="Search City">
-            <button>Search</button>
-         </form>
+         <div class="search-elements">
+            <input class="search-city" type="text" placeholder="Search City">
+            <button type="submit" class="submit">Search</button>
+         </div>
       </div>
       <div class="weather-display">
-         <div class="main-display">
+         <!-- <div class="main-display">
             <div class="current-weather">
                <h4 class="current-city">London</h4>
                <p class="current-date">Wednesday 1 April</p>
@@ -53,12 +53,13 @@
             <div class="bottom-container">
                <h4>Drizzle: <span>light intensity drizzle</span></h4>
             </div>
-
-         </div>
-
+         </div> -->
       </div>
       <p class="powered-by">powered by www.openweathermap.org</p>
    </div>
+   <script src="./fetch.js"></script>
+   <script src="./display-weather.js"></script>
+   <script src="./app.js"></script>
 </body>
 
 </html>

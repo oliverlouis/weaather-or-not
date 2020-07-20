@@ -1,0 +1,1 @@
+Weather web application using axios to make api requests to www.openweathermap.org. User enters a desired city into the search input, app then returns current local weather for that city.

@@ -87,7 +87,6 @@ city.addEventListener('keyup', (event) => {
 		const currentCity = city.value;
 
 		ft.getWeather(currentCity).then((data) => {
-			console.log(data);
 			ui.populateWeatherDisplay(data);
 		});
 

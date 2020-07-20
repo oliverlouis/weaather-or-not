@@ -10,10 +10,21 @@ const button = document.querySelector('.submit');
 
 button.addEventListener('click', () => {
 	const currentCity = city.value;
-	console.log(city.value);
 
 	ft.getWeather(currentCity).then((data) => {
 		ui.populateWeatherDisplay(data);
 	});
-	// ui.saveToLS(data);
+	city.value = '';
+});
+
+city.addEventListener('keyup', (event) => {
+	if (event.keyCode === 13) {
+		const currentCity = city.value;
+
+		ft.getWeather(currentCity).then((data) => {
+			ui.populateWeatherDisplay(data);
+		});
+
+		city.value = '';
+	}
 });

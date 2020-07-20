@@ -4,13 +4,24 @@ class DisplayWeather {
 	}
 
 	populateWeatherDisplay = (data) => {
+		let dateObj, day, month, year, currentDate;
+
+		dateObj = new Date();
+		day = dateObj.getDate();
+		month = dateObj.getUTCMonth();
+		year = dateObj.getFullYear();
+
+		const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+		currentDate = `${day} ${monthNames[month]}, ${year}`;
+
 		this.weatherDisplay.innerHTML = `
       
       <div class="main-display">
       <div class="current-weather">
-         <h4 class="current-city">${data.name}</h4>
-         <p class="current-date">${new Date()}</p>
-         <h1 class="current-temp">${Math.round(data.main.temp)}ºC</h1>
+         <h4 class="current-city">${data.name}, ${data.sys.country}</h4>
+         <p class="current-date">${currentDate}</p>
+         <h1 class="current-temp">${Math.round(data.main.temp)}º<span>C</span></h1>
          <h3 class="current-conditions">${data.weather[0].main}</h3>
       </div>
    </div>
@@ -31,7 +42,7 @@ class DisplayWeather {
          </div>
       </div>
       <div class="bottom-container">
-         <h4>${data.weather[0].main}: <span>${data.weather[0].description}</span></h4>
+         <p>${data.weather[0].description}</p>
       </div>
    </div> 
 

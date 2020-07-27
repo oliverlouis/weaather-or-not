@@ -16,7 +16,7 @@ class DisplayWeather {
 		this.weatherDisplay = document.querySelector('.weather-display');
 	}
 
-	populateWeatherDisplay = (data) => {
+	populateWeatherDisplay = (data, {...icons}) => {
 		let dateObj, day, month, year, currentDate;
 
 		dateObj = new Date();
@@ -26,15 +26,24 @@ class DisplayWeather {
 
 		const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+		const currentWeather = data.data.weather[0].main;
+
 		currentDate = `${day} ${monthNames[month]}, ${year}`;
+
+		console.log(data);
+		console.log(currentWeather);
+		console.log(weatherIcons.Drizzle);
 
 		this.weatherDisplay.innerHTML = `
       
-      <div class="main-display">
+   <div class="main-display">
       <div class="current-weather">
          <h4 class="current-city">${data.data.name}, ${data.data.sys.country} </h4>
-         <p class="current-date">${currentDate}</p>
-         <h1 class="current-temp">${Math.round(data.data.main.temp)}º<span>C</span></h1>
+			<p class="current-date">${currentDate}</p>
+			<div class="temp-icon">
+				<h1 class="current-temp">${Math.round(data.data.main.temp)}º<span>C</span>   <i class="weather-icon ${icons[currentWeather]}"></i></h1>
+				
+			</div>
          <h3 class="current-conditions">${data.data.weather[0].main}</h3>
       </div>
    </div>
@@ -63,6 +72,15 @@ class DisplayWeather {
 	};
 }
 
+var weatherIcons = {
+	Thunderstorm: 'fas fa-bolt',
+	Drizzle: 'fas fa-cloud-rain',
+	Rain: 'fas fa-cloud-showers-heavy',
+	Snow: 'fas fa-snowflake',
+	Clear: 'fas fa-sun',
+	Clouds: 'fas fa-cloud-sun',
+};
+
 //Instantiate Classes
 
 const ft = new Fetch();
@@ -77,7 +95,7 @@ button.addEventListener('click', () => {
 	const currentCity = city.value;
 
 	ft.getWeather(currentCity).then((data) => {
-		ui.populateWeatherDisplay(data);
+		ui.populateWeatherDisplay(data, weatherIcons);
 	});
 	city.value = '';
 });
@@ -87,7 +105,7 @@ city.addEventListener('keyup', (event) => {
 		const currentCity = city.value;
 
 		ft.getWeather(currentCity).then((data) => {
-			ui.populateWeatherDisplay(data);
+			ui.populateWeatherDisplay(data, weatherIcons);
 		});
 
 		city.value = '';

@@ -96,10 +96,14 @@ body {
 	.main-display {
 		width: 100%;
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		justify-content: center;
 		line-height: 1.3;
+
+		.temp-icon {
+			// display: flex;
+			justify-content: space-between;
+		}
 	}
 
 	.conditions-display {
@@ -163,6 +167,7 @@ body {
 		font-weight: 200;
 	}
 	.current-temp {
+		display: inline;
 		font-size: 120px;
 
 		span {
@@ -176,4 +181,9 @@ body {
 	@media (max-width: 1000px) {
 		flex-direction: column;
 	}
+}
+
+.weather-icon {
+	font-size: 120px;
+	margin-left: 20px;
 }
